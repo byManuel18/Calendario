@@ -1,0 +1,21 @@
+<div class="wrapper-calendar">
+	<div class="header-calendar">
+		<div>
+			<button (click)="changeMonth(-1)" class="btn-prev" [disabled]="!canGoPrev">Antes</button>
+		</div>
+    <div>
+      <h1><span>{{getMonthName(dateSelect.getMonth()) | uppercase}}</span><span> {{dateSelect.getFullYear()}}</span></h1>
+    </div>
+		<div>
+			<button (click)="changeMonth(1)" class="btn-next" [disabled]="!canGoNext">Siguiente</button>
+		</div>
+	</div>
+	<ol>
+		<li *ngFor="let day of configCalendar.daysWeek" class="day-name">{{day | slice:0:3}}</li>
+
+    <li   [style.gridColumnStart]="first ? day?.indexWeek : 'auto'" [ngClass]="{'selectedDay': isDaySelected(day)}"
+         *ngFor="let day of daysOfMonthSelected;let first = first">
+			<button (click)="clickDay(day)" type="button" [disabled]="!canClickDay(day)">{{day?.value}}</button>
+		</li>
+	</ol>
+</div>

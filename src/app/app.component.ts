@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Calendario';
+
+  dateSelected!: Date;
+
+  onSelectDate($event : Date){
+    this.dateSelected = $event;
+  }
 }
