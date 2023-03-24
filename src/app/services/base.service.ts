@@ -37,7 +37,7 @@ export class BaseService {
     });
   }
 
-  protected myPut<T extends Object,G extends Object>(url: string, body: G, options : HttpOptions) {
+  myPut<T extends Object,G extends Object>(url: string, body: G, options : HttpOptions) {
     return new Promise<T | null | ResponseKO>((resolve, reyect ) =>{
       this.http.put<T>(url,body,{headers: options.headers, params: options.params, observe: 'response'}).pipe(
         map<HttpResponse<T>,T | null | ResponseKO>((response)=>this.MapResponseOrError(response)),
@@ -49,7 +49,7 @@ export class BaseService {
     });
   }
 
-  protected myDelete<T extends Object>(url: string, options : HttpOptions) {
+  myDelete<T extends Object>(url: string, options : HttpOptions) {
     return new Promise<T | null | ResponseKO>((resolve, reyect ) =>{
       this.http.delete<T>(url,{headers: options.headers, params: options.params, observe: 'response'}).pipe(
         map<HttpResponse<T>,T | null | ResponseKO>((response)=>this.MapResponseOrError(response)),
@@ -61,7 +61,7 @@ export class BaseService {
     });
   }
 
-  protected myGet<T extends Object> (url: string, options : HttpOptions) : Promise<T | null | ResponseKO> {
+  myGet<T extends Object> (url: string, options : HttpOptions) : Promise<T | null | ResponseKO> {
     return new Promise<T | null | ResponseKO>((resolve, reyect ) =>{
       this.http.get<T>(url,{headers: options.headers, params: options.params, observe: 'response'}).pipe(
         map<HttpResponse<T>,T | null | ResponseKO>((response)=>this.MapResponseOrError(response)),
